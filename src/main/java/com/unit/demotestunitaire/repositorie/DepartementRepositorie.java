@@ -5,10 +5,15 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface DepartementRepositorie extends JpaRepository< Departement, UUID> {
 
 
     List<Departement> findAll(Sort sort);
+
+    Departement getDepartementByNomService(String nomService);
+
+    Optional<Departement> findById(UUID uuid);
 }

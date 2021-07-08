@@ -22,21 +22,13 @@ public class DepartementServiceImpl implements DepartementService {
     @Override
     public Departement createOrUpadteDepartement(Departement departement) {
 
-        System.out.println("le dpt "+departement.toString());
-
-        if (departement == null && departement.getNomService() == null) {
-            throw new RestClientException("Un des parametre(s) est null");
-        }
-
         if (departement.getId() == null) {
-            return departementRepositorie.saveAndFlush(departement);
+            Departement departementSave = new Departement();
+            departementSave.setNomService(departement.getNomService());
+            return departementRepositorie.saveAndFlush(departementSave);
         } else {
 
             Departement departementForUpdate = departementRepositorie.getById(departement.getId());
-
-            if(departementForUpdate == null ) {
-                throw new RestClientException("Ce departement n'existe pas");
-            }
 
             departementForUpdate.setNomService(departement.getNomService());
 

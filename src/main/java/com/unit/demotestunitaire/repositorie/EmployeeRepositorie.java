@@ -12,4 +12,6 @@ public interface EmployeeRepositorie extends JpaRepository<Employee, UUID> {
 
     List<Employee> findAll();
 
+    Employee getEmployeeByNomEmployeeAndPrenomEmployee(String nomEmployee, String prenomEmployee);
+
 }

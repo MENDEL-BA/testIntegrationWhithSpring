@@ -1,8 +1,5 @@
 package com.unit.demotestunitaire.domain;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import net.minidev.json.annotate.JsonIgnore;
-
 import javax.persistence.*;
 import java.util.List;
 import java.util.UUID;
@@ -14,21 +11,26 @@ public class Departement {
     @GeneratedValue
     private UUID id;
 
+    @Column(unique = true)
     private String nomService;
 
-    @OneToMany(mappedBy = "departement", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnore
-    @JsonManagedReference
-    private List<Employee> employees;
 
     public Departement(UUID id) {
         this.id = id;
     }
 
+    public Departement(UUID id, String nomService) {
+        this.id = id;
+        this.nomService = nomService;
+    }
+
+    public Departement(String nomService) {
+        this.nomService = nomService;
+    }
+
     public Departement(UUID id, String nomService, List<Employee> employees) {
         this.id = id;
         this.nomService = nomService;
-        this.employees = employees;
     }
 
     public Departement() {
@@ -48,14 +50,6 @@ public class Departement {
 
     public void setNomService(String nomService) {
         this.nomService = nomService;
-    }
-
-    public List<Employee> getEmployees() {
-        return employees;
-    }
-
-    public void setEmployees(List<Employee> employees) {
-        this.employees = employees;
     }
 
     @Override

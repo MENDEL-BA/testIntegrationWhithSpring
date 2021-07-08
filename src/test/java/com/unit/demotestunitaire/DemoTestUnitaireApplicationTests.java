@@ -47,6 +47,10 @@ public class DemoTestUnitaireApplicationTests {
        @Test
        public void updateEmployeeTest() {
 
+            Employee employee = employeeRepositorie.getEmployeeByNomEmployeeAndPrenomEmployee("mami", "sunade");
+            when(employeeRepositorie.saveAndFlush(employee)).thenReturn(employee);
+            Assert.assertEquals(employee, employeeService.createOrUpadteEmployee(employee));
+
        }
 
 

@@ -27,9 +27,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee createOrUpadteEmployee(Employee employee) {
+
         Departement departement = null;
+
         if (employee.getDepartement() != null) {
-             departement = departementRepositorie.findById(employee.getDepartement().getId()).orElse(null);
+             departement = departementRepositorie.findById(employee.getDepartement().getId()).orElseThrow();
         }
 
 
