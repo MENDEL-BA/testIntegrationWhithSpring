@@ -11,5 +11,7 @@ public interface DepartementService {
 
     void deleteDepartement(UUID uuidDepartement);
 
+    Departement getByNomService(String nomService);
+
     List<Departement> getAllDepartement();
 }

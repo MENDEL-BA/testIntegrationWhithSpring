@@ -70,5 +70,18 @@ public class DepartementResource {
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert("testIntegrationDemo", false, ENTITY_NAME, id.toString())).build();
     }
 
+    /**
+     * {@code GET  /departements/:nomService} : get the "nomService" departements.
+     *
+     * @param nomService the id of the departements to get.
+     * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
+     */
+    @RequestMapping(value="/departements/{nomService}", method=RequestMethod.GET)
+    public Departement deleteDepartements(@PathVariable String nomService) {
+        System.out.println("REST request to get departement : {}"+ nomService);
+
+        return departementService.getByNomService(nomService);
+    }
+
 
 }

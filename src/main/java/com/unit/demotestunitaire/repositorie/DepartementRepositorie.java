@@ -13,7 +13,7 @@ public interface DepartementRepositorie extends JpaRepository< Departement, UUID
 
     List<Departement> findAll(Sort sort);
 
-    Departement getDepartementByNomService(String nomService);
+    Departement findByNomService(String nomService);
 
     Optional<Departement> findById(UUID uuid);
 }

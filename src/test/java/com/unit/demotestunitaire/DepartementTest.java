@@ -1,11 +1,8 @@
 package com.unit.demotestunitaire;
 
 import com.unit.demotestunitaire.domain.Departement;
-import com.unit.demotestunitaire.domain.Employee;
 import com.unit.demotestunitaire.repositorie.DepartementRepositorie;
-import com.unit.demotestunitaire.repositorie.EmployeeRepositorie;
 import com.unit.demotestunitaire.service.DepartementService;
-import com.unit.demotestunitaire.service.EmployeeService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,7 +32,6 @@ public class DepartementTest {
 
     @Test
     public void getDepartementTest() {
-        System.out.println(UUID.randomUUID());
         when(departementRepositorie.findAll()).thenReturn(Stream
                 .of(new Departement(UUID.randomUUID(),"Force Speciale de KONOHA"), new Departement(UUID.randomUUID(), "Section Recherche"))
                 .collect(Collectors.toList()));
@@ -53,9 +49,18 @@ public class DepartementTest {
     @Test
     public void updateEmployeeTest() {
 
-        Departement departement = departementRepositorie.getDepartementByNomService("Force Speciale de KONOHA");
-        when(departementRepositorie.saveAndFlush(departement)).thenReturn(departement);
-        Assert.assertEquals(departement, departementService.createOrUpadteDepartement(departement));
+        //Departement departement = departementService.getByNomService("Force speciale de KONOHA");
+        System.out.println("le departement "+departementService.getByNomService("Force speciale de KONOHA"));
+       // when(departementRepositorie.saveAndFlush(departement)).thenReturn(departement);
+        //Assert.assertEquals(departement, departementService.createOrUpadteDepartement(departement));
 
+    }
+
+    @Test
+    public void getDepartementbyNomserviceTest() {
+        String nomService = "Force_speciale_konoha";
+        when(departementRepositorie.findByNomService(nomService))
+                .thenReturn(new Departement(UUID.randomUUID(), "Force_speciale_konoha"));
+        Assert.assertEquals(departementRepositorie.findByNomService(nomService), departementService.getByNomService(nomService));
     }
 }

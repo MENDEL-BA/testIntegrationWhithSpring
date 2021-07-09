@@ -47,6 +47,15 @@ public class DepartementServiceImpl implements DepartementService {
     }
 
     @Override
+    public Departement getByNomService(String nomService) {
+        if (nomService == null) {
+            throw new RestClientException("Un des parametres est null");
+        }
+
+        return departementRepositorie.findByNomService(nomService);
+    }
+
+    @Override
     public List<Departement> getAllDepartement() {
         return departementRepositorie.findAll();
     }
